@@ -198,7 +198,7 @@ function fn1() {
 
     div.style.animation = "cc1_head4 550ms forwards cubic-bezier(0.33, 1, 0.68, 1)";
     dakai.style.backgroundColor = "#001dff99";
-    dakai.style.width = auto;
+    dakai.style.width = "auto";
     dakai.textContent = "You can play the functions there.";
 
     div.addEventListener("animationend", (e) => {
@@ -376,7 +376,7 @@ function fn2() {
     dakai.textContent = "The content below is preset.";
     dakai.style.transition = "all 550ms cubic-bezier(0.33, 1, 0.68, 1)";
     dakai.style.backgroundColor = "#001dff99";
-    dakai.style.width = auto;
+    dakai.style.width = "auto";
 
     div.addEventListener("animationend", (e) => {
         if (e.animationName === "cc1_head3") {
@@ -415,7 +415,7 @@ function fn3() {
     const dakai = document.getElementById("3");
     dakai.style.transition = `all 550ms ${easing}`;
     dakai.style.backgroundColor = "#001dff99";
-    dakai.style.width = auto;
+    dakai.style.width = "auto";
     dakai.textContent = "Download all versions of The Play Games here.";
 
     const btn1 = document.createElement("button");
