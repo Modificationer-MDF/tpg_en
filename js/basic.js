@@ -237,61 +237,61 @@ function fn2() {
     notibtn.innerHTML = "noti";
     notibtn.className = "btn1";
     notibtn.onclick = () => {
-        noti("你好，欢迎使用 The Play Games！");
+        noti("Hello, welcome to The Play Games!");
     };
     const cgbtn = document.createElement("button");
     cgbtn.innerHTML = "cg";
     cgbtn.className = "btn2";
     cgbtn.onclick = () => {
-        cg("当你看到这条信息时，说明你已经成功运行了主函数区的这个函数。");
+        cg("When you see this message, it means you have successfully run this function in the main function area.");
     };
     const failbtn = document.createElement("button");
     failbtn.innerHTML = "fail";
     failbtn.className = "btn3";
     failbtn.onclick = () => {
-        fail("但有时候可能会报错，比如 NotAllowedError。");
+        fail("However, it's error sometimes, like NotAllowedError.");
     };
     const warnbtn = document.createElement("button");
     warnbtn.innerHTML = "warn";
     warnbtn.className = "btn4";
     warnbtn.onclick = () => {
-        warn("看到这种信息时，要格外注意了。");
+        warn("When you see this message, you need pay attention to it.");
     };
     const inpbtn = document.createElement("button");
     inpbtn.innerHTML = "inp";
     inpbtn.className = "btn5";
     inpbtn.onclick = async () => {
         let a = await inp("你可以在此输入！");
-        noti("你输入了：“${a}”。");
+        noti(`You have entered "${a}".`);
     };
     const synchrbtn = document.createElement("button");
     synchrbtn.innerHTML = "synchr";
     synchrbtn.className = "btn6";
     synchrbtn.onclick = async () => {
-        await synchr("该函数还在开发中。");
+        await synchr("This function is still work-in-progress.");
     };
     const xzbtn = document.createElement("button");
     xzbtn.innerHTML = "xz";
     xzbtn.className = "btn7";
     xzbtn.onclick = async () => {
-        var res = await xz("你对以上的函数有什么看法？", 4, ["很不错。", "还可以。", "一般。", "有待改进的空间。"]);
+        var res = await xz("How do you like the functions above?", 4, ["Fabulous.", "Not bad.", "Average.", "You can do it better."]);
         switch (res) {
-            case "很不错。":
-                noti("非常感谢！你还可以尝试其他的函数。");
+            case "Fabulous.":
+                noti("Thanks a lot! You can try other functions.");
                 break;
-            case "还可以。":
-                noti("谢谢你的评价！");
+            case "Not bad.":
+                noti("Thank you for your rating.");
                 break;
-            case "一般。":
-                noti("我们可以做得更好。");
+            case "Average.":
+                noti("We can do better");
                 break;
-            case "有待改进的空间。":
-                var r = await xz("你是否想向我反馈你的建议？", 2, ["是。", "否。"]);
-                if (r === "是。") {
-                    await lj("点击以下链接反馈。", "mailto://Feng_14@outlook.com");
+            case "You can do it better.":
+                var r = await xz("Would you like to give us some advice?", 2, ["Yes.", "No."]);
+                if (r === "Yes.") {
+                    await lj("Click the link below to feedback.", "mailto://Feng_14@outlook.com");
                     break;
                 } else {
-                    noti("好的，我们再见。");
+                    noti("OK, goodbye.");
                 }
         }
     };
@@ -299,31 +299,31 @@ function fn2() {
     ljbtn.innerHTML = "lj";
     ljbtn.className = "btn8";
     ljbtn.onclick = async () => {
-        await lj("点击此处浏览 The Play Games 的信息界面！", "https://modificationer-mdf.github.io/tpg_info/");
+        await lj("View the information page of The Play Games via clicking the link below.", "https://modificationer-mdf.github.io/tpg_info/");
     };
     const zdbtn = document.createElement("button");
     zdbtn.innerHTML = "zd";
     zdbtn.className = "btn9";
     zdbtn.onclick = async () => {
-        await zd("在此处输入代码。");
+        await zd("Input codes here.");
     };
     const timerbtn = document.createElement("button");
     timerbtn.innerHTML = "timer";
     timerbtn.className = "btn29";
     timerbtn.onclick = async () => {
-        let b = await timer("计时 5 秒。", 5000);
+        let b = await timer("A 5-second countdown.", 5000);
         if (b) {
-            noti("计时结束。");
+            noti("Time's up.");
         }
     };
     const nullbtn = document.createElement("button");
-    nullbtn.innerHTML = "在函数的值中输入 null 值";
+    nullbtn.innerHTML = "Input null in the functions above.";
     nullbtn.className = "btn10";
     nullbtn.onclick = () => {
         wz(null);
     };
     const undefinedbtn = document.createElement("button");
-    undefinedbtn.innerHTML = "在函数的值中输入 undefined 值";
+    undefinedbtn.innerHTML = "Input undefined in the functions above.";
     undefinedbtn.className = "btn11";
     undefinedbtn.onclick = () => {
         wz(undefined);
@@ -332,7 +332,7 @@ function fn2() {
     imp.textContent = "wz";
     imp.className = "btn22";
     imp.onclick = () => {
-        wz("在这里可以显示文字！ <br />（背景使用了亚克力材料。）");
+        wz("Contents are able to be displayed here!<br/>(Background used acrylic materials.)");
     };
 
     const all = [
@@ -427,7 +427,7 @@ function fn3() {
     a1.download = "Version_Collecting_1.zip";
     a1.textContent = "Download VC_Time 1 (Including The Play Games 0.1 ~ 0.6)";
     a1.onmouseover = () => {
-        rz("2024 年 5 月 1 日发布。");
+        rz("Released on 2024.5/1.");
     };
 
     const btn2 = document.createElement("button");
@@ -438,7 +438,7 @@ function fn3() {
     a2.download = "Version_0.7.zip";
     a2.textContent = "Download The Play Games 0.7";
     a2.onmouseover = () => {
-        rz("2024 年 8 月 22 日发布。");
+        rz("Released on 2024.8/22.");
     };
 
     const btn3 = document.createElement("button");
@@ -449,7 +449,7 @@ function fn3() {
     a3.download = "Version_0.8.zip";
     a3.textContent = "Download The Play Games 0.8";
     a3.onmouseover = () => {
-        rz("2024 年 8 月 27 日发布。");
+        rz("Released on 2024.8/27.");
     };
 
     const all = [
@@ -511,17 +511,17 @@ function control() { // 选项。
     title.style.right = "25px";
 
     const ms = document.createElement("p");
-    ms.innerHTML = "演示模式";
+    ms.innerHTML = "Mode";
     ms.className = "lcont";
     const ys = document.createElement("button");
     ys.type = "button";
     ys.innerHTML = "Preset";
     ys.className = "control1";
     ys.onclick = () => {
-        if (mode === "Preset") warn("当前模式已为 Preset。");
+        if (mode === "Preset") warn("Mode is already Preset.");
         else {
             mode = "Preset";
-            cg("已切换到 Preset 模式。");
+            cg("Mode has been switched to Preset.");
         }
     };
     const js = document.createElement("button");
@@ -529,25 +529,25 @@ function control() { // 选项。
     js.innerHTML = "Play";
     js.className = "control2";
     js.onclick = () => {
-        if (mode === "Play") warn("当前模式已为 Play。");
+        if (mode === "Play") warn("Mode is already Play.");
         else {
             mode = "Play";
-            cg("已切换到 Play 模式。");
+            cg("Mode has been switched to Play.");
         }
     };
 
     const ts = document.createElement("p");
-    ts.innerHTML = "窗口标题";
+    ts.innerHTML = "Title";
     ts.className = "lcont";
     const y = document.createElement("button");
     y.type = "button";
     y.innerHTML = "Default";
     y.className = "control3";
     y.onclick = () => {
-        if (titleset === "Default") warn("你已经在使用默认标题。");
+        if (titleset === "Default") warn("Title is already Default.");
         else {
             titleset = "Default";
-            cg("已切换到默认标题。");
+            cg("Title has been switched to Default.");
         }
     };
     const z = document.createElement("button");
@@ -555,62 +555,62 @@ function control() { // 选项。
     z.innerHTML = "Custom";
     z.className = "control4";
     z.onclick = () => {
-        if (titleset === "Custom") warn("你已经在使用自定义标题。");
+        if (titleset === "Custom") warn("Title is already Custom.");
         else {
             titleset = "Custom";
-            cg("已切换到自定义标题。");
+            cg("Title has been switched to Custom.");
         }
     };
 
     const c_block = document.createElement("p");
-    c_block.innerHTML = "设置 “选项” 状态";
+    c_block.innerHTML = `"Options" Status`;
     c_block.className = "lcont";
     const y1 = document.createElement("button");
     y1.type = "button";
-    y1.innerHTML = "锁定";
+    y1.innerHTML = "Lock";
     y1.className = "control5";
     y1.onclick = () => {
-        if (control_block === true) warn("“选项” 已锁定。");
+        if (control_block === true) warn(`"Options" has been locked.`);
         else {
             control_block = true;
-            cg("“选项” 已锁定。");
+            cg(`"Options" has been locked.`);
         }
     };
     const n1 = document.createElement("button");
     n1.type = "button";
-    n1.innerHTML = "解锁";
+    n1.innerHTML = "Unlock";
     n1.className = "control6";
     n1.onclick = () => {
-        if (control_block === false) warn("“选项” 已解锁。");
+        if (control_block === false) warn(`"Options" has been unlocked.`);
         else {
             control_block = false;
-            cg("“选项” 已解锁。");
+            cg(`"Options" has been unlocked.`);
         }
     };
 
     const i_block = document.createElement("p");
-    i_block.innerHTML = "设置 “未读信息” 状态";
+    i_block.innerHTML = `"Unread Messages" Status`;
     i_block.className = "lcont";
     const y2 = document.createElement("button");
     y2.type = "button";
-    y2.innerHTML = "锁定";
+    y2.innerHTML = "Lock";
     y2.className = "control7";
     y2.onclick = () => {
-        if (inf_block === true) warn("“未读信息” 已锁定。");
+        if (inf_block === true) warn(`"Unread Messages" has been locked.`);
         else {
             inf_block = true;
-            cg("“未读信息” 已锁定。");
+            cg(`"Unread Messages" has been locked.`);
         }
     };
     const n2 = document.createElement("button");
     n2.type = "button";
-    n2.innerHTML = "解锁";
+    n2.innerHTML = "Unlock";
     n2.className = "control8";
     n2.onclick = () => {
-        if (inf_block === false) warn("“未读信息” 已解锁。");
+        if (inf_block === false) warn(`"Unread Messages" has been unlocked.`);
         else {
             inf_block = false;
-            cg("“未读信息” 已解锁。");
+            cg(`"Unread Messages" has been unlocked.`);
         }
     };
 
@@ -625,7 +625,7 @@ function control() { // 选项。
     let t1 = false;
     inp1.onclick = () => {
         if (t1 === false) {
-            noti("cubic-bezier 函数的格式是 cubic-bezier(x1, y1, x2, y2)，其中 x1 和 x2 必须在 0 到 1 之间，y1 和 y2 则可以是任意值；其他 easing 还有 ease、linear、ease-in、ease-out、ease-in-out、step、step-start、step-end。");
+            noti("The mode of cubic-bezier() is cubic-bezier(x1, y1, x2, y2). x1 and x2 must be between 0 and 1, and y1 and y2 can be any value. Other easing functions include ease, linear, ease-in, ease-out, ease-in-out, step, step-start, and step-end.");
             t1 = true;
         }
     };
@@ -646,14 +646,14 @@ function control() { // 选项。
     inp2.className = "inpbox";
     inp2.onclick = () => {
         if (t2 === false) {
-            noti("deftime 的取值既可以为大于等于 1250 的整数，也可以为 Smart。");
+            noti("Deftime can either be an integer greater than or equal to 1250, or Smart.");
             t2 = true;
         }
     };
     inp2.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
             if (windows.length > 0) {
-                warn(`现在不能设置 deftime 的值。${check()} 正在运行。`)
+                warn(`Cannot set deftime while ${check()} is running.`)
             } else {
                 if (!isNaN(Number(inp2.value))) deftime = Number(inp2.value);
                 else deftime = inp2.value;
@@ -672,7 +672,7 @@ function control() { // 选项。
     inp3.className = "inpbox";
     inp3.onclick = () => {
         if (t3 === false) {
-            warn("defwid 只能为正整数。");
+            warn("Defwid can only be a positive integer.");
             t3 = true;
         }
     };
@@ -693,7 +693,7 @@ function control() { // 选项。
     inp4.className = "inpbox";
     inp4.onclick = () => {
         if (t4 === false) {
-            warn("defhei 只能为正整数。");
+            warn("Defhei can only be a positive integer.");
             t4 = true;
         }
     };
@@ -770,11 +770,11 @@ function inf_ui() {
     noti_msg.id = "noti_msg";
     const noti_read = document.createElement("button");
     noti_read.type = "button";
-    noti_read.innerHTML = "清空。";
+    noti_read.innerHTML = "Clear.";
     noti_read.className = "inf1";
     noti_read.onclick = () => {
         noti_unv = [];
-        rz("已清空 Noti() 的未读信息。");
+        rz("The unread messages of Noti() have been cleared.");
     };
 
     const cgc = document.createElement("div");
@@ -786,11 +786,11 @@ function inf_ui() {
     cg_msg.id = "cg_msg";
     const cg_read = document.createElement("button");
     cg_read.type = "button";
-    cg_read.innerHTML = "清空。";
+    cg_read.innerHTML = "Clear.";
     cg_read.className = "inf2";
     cg_read.onclick = () => {
         cg_unv = [];
-        rz("已清空 Cg() 的未读信息。");
+        rz("The unread messages of Cg() have been cleared.");
     };
 
     const failc = document.createElement("div");
@@ -802,11 +802,11 @@ function inf_ui() {
     fail_msg.id = "fail_msg";
     const fail_read = document.createElement("button");
     fail_read.type = "button";
-    fail_read.innerHTML = "清空。";
+    fail_read.innerHTML = "Clear.";
     fail_read.className = "inf3";
     fail_read.onclick = () => {
         fail_unv = [];
-        rz("已清空 Fail() 的未读信息。");
+        rz("The unread messages of Fail() have been cleared.");
     };
 
     const warnc = document.createElement("div");
@@ -818,11 +818,11 @@ function inf_ui() {
     warn_msg.id = "warn_msg";
     const warn_read = document.createElement("button");
     warn_read.type = "button";
-    warn_read.innerHTML = "清空。";
+    warn_read.innerHTML = "Clear.";
     warn_read.className = "inf4";
     warn_read.onclick = () => {
         warn_unv = [];
-        rz("已清空 Warn() 的未读信息。");
+        rz("The unread messages of Warn() have been cleared.");
     };
 
     const synchrc = document.createElement("div");
@@ -834,11 +834,11 @@ function inf_ui() {
     synchr_msg.id = "synchr_msg";
     const synchr_read = document.createElement("button");
     synchr_read.type = "button";
-    synchr_read.innerHTML = "清空。";
+    synchr_read.innerHTML = "Clear.";
     synchr_read.className = "inf5";
     synchr_read.onclick = () => {
         synchr_unv = [];
-        rz("已清空 Synchr() 的未读信息。");
+        rz("The unread messages of Synchr() have been cleared.");
     };
 
     const all = [
@@ -882,7 +882,7 @@ function inf_cont() { // 更新未读信息。
     const notic = document.getElementById("notic");
     const noti_msg = notic.querySelector(".rtxt");
     let h1 = parseInt(getComputedStyle(noti_msg).lineHeight);
-    noti_msg.innerHTML = (noti_unv.length === 0 ? "空。" : noti_unv.join("<br />"));
+    noti_msg.innerHTML = (noti_unv.length === 0 ? "Empty." : noti_unv.join("<br />"));
     let l1 = Math.ceil((noti_msg.getBoundingClientRect().width * noti_msg.getBoundingClientRect().height) / (parseFloat(getComputedStyle(noti_msg).maxWidth) * h1));
     noti_height = l1 * h1;
 
@@ -890,7 +890,7 @@ function inf_cont() { // 更新未读信息。
 
     const cgc = document.getElementById("cgc");
     const cg_msg = cgc.querySelector(".rtxt");
-    cg_msg.innerHTML = (cg_unv.length === 0 ? "空。" : cg_unv.join("<br />"));
+    cg_msg.innerHTML = (cg_unv.length === 0 ? "Empty." : cg_unv.join("<br />"));
     let h2 = parseInt(getComputedStyle(cg_msg).lineHeight);
     let l2 = Math.ceil((cg_msg.getBoundingClientRect().width * cg_msg.getBoundingClientRect().height) / (parseFloat(getComputedStyle(noti_msg).maxWidth) * h2));
     cg_height = l2 * h2;
@@ -898,7 +898,7 @@ function inf_cont() { // 更新未读信息。
 
     const failc = document.getElementById("failc");
     const fail_msg = failc.querySelector(".rtxt");
-    fail_msg.innerHTML = (fail_unv.length === 0 ? "空。" : fail_unv.join("<br />"));
+    fail_msg.innerHTML = (fail_unv.length === 0 ? "Empty." : fail_unv.join("<br />"));
     let h3 = parseInt(getComputedStyle(fail_msg).lineHeight);
     let l3 = Math.ceil((fail_msg.getBoundingClientRect().width * fail_msg.getBoundingClientRect().height) / (parseFloat(getComputedStyle(noti_msg).maxWidth) * h3));
     fail_height = l3 * h3;
@@ -906,7 +906,7 @@ function inf_cont() { // 更新未读信息。
 
     const warnc = document.getElementById("warnc");
     const warn_msg = warnc.querySelector(".rtxt");
-    warn_msg.innerHTML = (warn_unv.length === 0 ? "空。" : warn_unv.join("<br />"));
+    warn_msg.innerHTML = (warn_unv.length === 0 ? "Empty." : warn_unv.join("<br />"));
     let h4 = parseInt(getComputedStyle(warn_msg).lineHeight);
     let l4 = Math.ceil((warn_msg.getBoundingClientRect().width * warn_msg.getBoundingClientRect().height) / (parseFloat(getComputedStyle(noti_msg).maxWidth) * h4));
     warn_height = l4 * h4;
@@ -914,7 +914,7 @@ function inf_cont() { // 更新未读信息。
 
     const synchrc = document.getElementById("synchrc");
     const synchr_msg = synchrc.querySelector(".rtxt");
-    synchr_msg.innerHTML = (synchr_unv.length === 0 ? "空。" : synchr_unv.join("<br />"));
+    synchr_msg.innerHTML = (synchr_unv.length === 0 ? "Empty." : synchr_unv.join("<br />"));
     let h5 = parseInt(getComputedStyle(synchr_msg).lineHeight);
     let l5 = Math.ceil((synchr_msg.getBoundingClientRect().width * synchr_msg.getBoundingClientRect().height) / (parseFloat(getComputedStyle(noti_msg).maxWidth) * h5));
     synchr_height = l5 * h5;
@@ -1023,19 +1023,19 @@ async function fn7() { // 网站介绍。
     const wbox = document.getElementById("defwid");
     const hbox = document.getElementById("defhei");
 
-    await wz("欢迎来到 The Play Games 官方网站！是时候带你熟悉一下了。");
-    noti("请将鼠标移动至左上角。");
+    await wz("Welcome to The Play Games official website! Now it's time to familiarize yourself with it.");
+    noti("Move your mouse to the upper left corner.");
     control_block = true;
 
     const i1 = setInterval(async () => {
         if (getComputedStyle(ctrl).animationName === "jr_ctrl" && j1 === false) {
             j1 = true;
-            await wz("正如你所见，这里是该网站的 “选项” 界面！你可以在此处更改网站的各项特殊参数。");
-            let q1 = await xz("是否需要演示如何更改？", 2, ["是。", "否。"]);
-            if (q1 === "是。") {
-                await wz("你可以直接点击相应的按钮便捷更改变量值，也可以通过输入来更改。");
-                let q2 = await xz("选择哪个变量演示呢？", 4, ["easing", "deftime", "defwid", "defhei"]);
-                noti("请修改该值。");
+            await wz(`As you see, it's "Options" here. You can modify any special parameters of the website here.`);
+            let q1 = await xz("Need I show you how to modify?", 2, ["Yes.", "No."]);
+            if (q1 === "Yes.") {
+                await wz("You can click the buttons or input the values directly to modify the variables.");
+                let q2 = await xz("Choose which variable you want to modify:", 4, ["easing", "deftime", "defwid", "defhei"]);
+                noti("Please modify this variable.");
                 switch (q2) {
                     case "easing":
                         ebox.focus();
@@ -1079,7 +1079,7 @@ async function fn7() { // 网站介绍。
                         break;
                 }
             } else {
-                await wz("好的，那我们继续。");
+                await wz("OK, let's back to the topic.");
                 control_block = false;
                 control_moved = true;
                 w1 = true;
@@ -1091,13 +1091,13 @@ async function fn7() { // 网站介绍。
     const i2 = setInterval(async () => {
         if (w1 === true && j2 === false) {
             j2 = true;
-            await wz("接下来介绍的是 “未读信息” 界面。");
-            noti("请将鼠标移动至右上角。");
+            await wz(`The following is the "Unread Messages".`);
+            noti("Move your mouse to the upper right corner.");
             inf_block = true;
             const i3 = setInterval(async () => {
                 if (getComputedStyle(inf).animationName === "jr_inf" && j3 === false) {
                     j3 = true;
-                    await wz("在 “未读信息” 界面，你可以看到因窗口大小限制而没有看到的内容。");
+                    await wz(`At "Unread Messages", you can see all the messages that you haven't read yet.`);
                     inf_block = false;
                     inf_moved = true;
                     w2 = true;
@@ -1111,7 +1111,7 @@ async function fn7() { // 网站介绍。
     const i3 = setInterval(async () => {
         if (w2 === true && w3 === false) {
             w3 = true;
-            await wz("恭喜，你已经看完了网站的介绍！感谢你对 The Play Games 的支持。");
+            await wz("Congratulations! You have finished the tour. Thank you for your cooperation for The Play Games.");
             control_block = false;
             control_moved = true;
             clearInterval(i3);
@@ -1128,7 +1128,7 @@ function visible(e, fn_name) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
     if (viewport === false) {
-        rz(`请注意，你有一条未读完的 ${fn_name}() 信息。`);
+        rz(`Heads up! You have an unread ${fn_name}() message.`);
         switch (fn_name) {
             case "Noti":
                 noti_unv.push(e.innerHTML);
