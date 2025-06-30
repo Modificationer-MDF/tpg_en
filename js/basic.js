@@ -991,11 +991,11 @@ function inf_ui() {
     clear.type = "button";
     clear.id = "clear-all";
     clear.innerHTML = "Clear unread messages.";
-    clear.style.width = "15ch";
+    clear.style.width = "30ch";
     clear.className = "inf1";
     clear.style.position = "absolute";
     clear.style.top = "90px";
-    clear.style.left = "0%";
+    clear.style.left = "-50%";
     clear.style.backgroundColor = "#00000099";
     clear.style.color = "#ffffff";
 
@@ -1117,14 +1117,14 @@ async function inf_cont() { // 更新未读信息。
 
         clear.style.visibility = "hidden";
         clear.style.opacity = 0;
-        clear.style.left = "0%";
+        clear.style.left = "-50%";
     } else {
         counts.style.top = "140px";
         counts.innerHTML = `There're ${qj_count} unread messages now.`;
 
         clear.style.visibility = "visible";
         clear.style.opacity = 1;
-        clear.style.left = "50%";
+        clear.style.left = "15%";
 
         clear.onclick = async () => {
             inf_block = true;
