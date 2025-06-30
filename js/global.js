@@ -1,17 +1,19 @@
 let mode = "Preset";
 let titleset = "Default";
-let easing = "cubic-bezier(0.83, 0, 0.17, 1)";
+let rightset = "Follow the settings of the website";
+let easing = "cubic-bezier(0.17, 0.9, 0.4, 0.99)";
 let deftime = "Smart";
 let defwid = 1024;
 let defhei = 768;
-let f1 = false;
-let f2 = false;
+let f1 = false; // “预设” 开关。
+let f2 = false; // “演示” 开关。
+let f3 = false; // "Version Lists" 开关。
 let alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let marks = `\n\t\r!@#$%^&*()_+-=[]{}|;':\\"',./<>?1234567890！？。“”《》、；‘’【】·~·。，、：；“”‘’《》（）…￥—` + "`";
 let control_block = false; // 锁定 “选项”。
-let inf_block = false; // 锁定 “未读信息”。
+let inf_block = false; // 锁定 "Unread Messages"。
 let control_moved = false; // “选项”。
-let inf_moved = false; // “未读信息”。
+let inf_moved = false; // "Unread Messages"。
 let isdimmed = false;
 let windows = []; // 十函数数组。
 let rzwin = []; // rz() 数组。
@@ -22,11 +24,12 @@ let fail_unv = [];
 let warn_unv = [];
 let synchr_unv = [];
 let timer_unv = [];
-let ls_notiunv = [];
-let ls_cgunv = [];
-let ls_failunv = [];
-let ls_warnunv = [];
-let ls_synchrunv = [];
+let ls_notiunv = 0;
+let ls_cgunv = 0;
+let ls_failunv = 0;
+let ls_warnunv = 0;
+let ls_synchrunv = 0;
+let warned = false;
 
 document.addEventListener("DOMContentLoaded", function () {
     var start = performance.now();
@@ -36,51 +39,51 @@ document.addEventListener("DOMContentLoaded", function () {
     font1.load().then(function (f) {
         var end = performance.now();
         document.fonts.add(f);
-        cg(`Successfully loaded font: Basic Modification Regular. Time taken: ${((end - start) / 1000).toFixed(3)} seconds.`);
+        cg(`It took ${((end - start) / 1000).toFixed(3)} seconds to load the font: Basic Modification Regular.`);
     }).catch(function (error) {
         switch (error.name) {
             case "NetworkError":
                 fail("Network error.");
                 break;
             case "FontLoadError":
-                fail("Failed to load font.");
+                fail("Font load error.");
                 break;
             default:
-                fail(`Unknown error. (${error})`);
+                fail(`An unknown error occurred. (${error})`);
                 break;
         }
     });
     font2.load().then(function (f) {
         var end = performance.now();
         document.fonts.add(f);
-        cg(`Successfully loaded font: Lanubu Light. Time taken: ${((end - start) / 1000).toFixed(3)} seconds.`);
+        cg(`It took ${((end - start) / 1000).toFixed(3)} seconds to load the font: Lanubu Light.`);
     }).catch(function (error) {
         switch (error.name) {
             case "NetworkError":
                 fail("Network error.");
                 break;
             case "FontLoadError":
-                fail("Failed to load font.");
+                fail("Font load error.");
                 break;
             default:
-                fail(`Unknown error. (${error})`);
+                fail(`An unknown error occurred. (${error})`);
                 break;
         }
     });
     font3.load().then(function (f) {
         var end = performance.now();
         document.fonts.add(f);
-        cg(`Successfully loaded font: Arno Pro Regular. Time taken: ${((end - start) / 1000).toFixed(3)} seconds.`);
+        cg(`It took ${((end - start) / 1000).toFixed(3)} seconds to load the font: Arno Pro Regular.`);
     }).catch(function (error) {
         switch (error.name) {
             case "NetworkError":
                 fail("Network error.");
                 break;
             case "FontLoadError":
-                fail("Failed to load font.");
+                fail("Font load error.");
                 break;
             default:
-                fail(`Unknown error. (${error})`);
+                fail(`An unknown error occurred. (${error})`);
                 break;
         }
     });
@@ -90,11 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inf = document.querySelector(".information-table");
     inf.style.animationName = "cc_inf";
     const main = document.getElementById("main");
-    main.style.transition = "filter 0.2s ease-in-out";
-    function width(name) {
-        const el = document.querySelector(name);
-        el.style.width = window.innerWidth + "px";
-    }
+    const menu = document.querySelector(".rightclick-menu");
 
     setInterval(() => {
         let arr = easing.match(/\d+(\.\d+)?/g);
@@ -110,31 +109,48 @@ document.addEventListener("DOMContentLoaded", function () {
         let isdeftime = (deftime >= 1250 || deftime === "Smart");
 
         if (!iseasing) {
-            easing = "cubic-bezier(0.83, 0, 0.17, 1)";
-            fail("The value of easing is not valid, it has been reset to cubic-bezier(0.83, 0, 0.17, 1).");
+            easing = "cubic-bezier(0.17, 0.9, 0.4, 0.99)";
+            fail("Unexpected value of easing. It has been reset to cubic-bezier(0.17, 0.9, 0.4, 0.99).");
         } if (!isdefhei) {
             defhei = 768;
-            fail("The value of defhei is not valid, it has been reset to 768.");
+            fail("Unexpected value of defhei. It has been reset to 768.");
         } if (!isdefwid) {
             defwid = 1024;
-            fail("The value of defwid is not valid, it has been reset to 1024.");
+            fail("Unexpected value of defwid. It has been reset to 1024.");
         } if (!isdeftime) {
             deftime = "Smart";
-            fail("The value of deftime is not valid, it has been reset to Smart.");
+            fail("Unexpected value of deftime. It has been reset to Smart.");
         }
         width(".top");
         inf_cont();
 
         if (windows.length > 0 || rzwin.length > 0 || wzwin.length > 0) {
-            if (isdimmed === false) {
-                main.style.filter = "brightness(60%)";
-            }
+            if (isdimmed === false) ld(main, "75%");
         } else {
-            main.style.filter = "brightness(100%)";
+            ld(main, "100%");
             isdimmed = false;
+        }
+
+        if (rightset === "Follow the settings of the website") {
+            document.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+                menu.style.visibility = "visible";
+                menu.style.transition = `opacity 0.3s, top 0.3s, left 0.3s ${easing}`;
+                menu.style.opacity = "1";
+                menu.style.left = `${e.pageX}px`;
+                menu.style.top = `${e.pageY}px`;
+            }, { once: true });
+
+            document.addEventListener("click", function (e) {
+                const menu = document.querySelector(".rightclick-menu");
+                menu.style.opacity = "0";
+                menu.addEventListener("transitionend", () => {
+                    menu.style.visibility = "hidden";
+                }, { once: true });
+            }, { once: true });
         }
     }, 400);
     document.addEventListener("keydown", (event) => {
-        if (event.altKey) noti("Move the mouse to the upper left corner to open the options; move to the upper right corner to check unread messages.")
+        if (event.altKey) noti('Move the mouse to the upper left corner to open "Options"; move it to the upper right corner to view "Unread Messages".')
     });
 });

@@ -2,7 +2,7 @@
 
 function rz(string, time) {
     if (string == null) {
-        warn("nul.");
+        warn("null.");
         return;
     } else if (string == undefined) {
         warn("undefined.");
@@ -26,11 +26,11 @@ function rz(string, time) {
     window.appendChild(content);
 
     requestAnimationFrame(() => {
-        window.style.animation = `jr_rz 550ms forwards ${easing}`;
+        window.style.animation = `jr_rz 0.55s forwards ${easing}`;
     });
 
     setTimeout(() => {
-        window.style.animation = `cc_rz 550ms forwards ${easing}`;
+        window.style.animation = `cc_rz 0.55s forwards ${easing}`;
         setTimeout(() => {
             if (document.body.contains(window)) document.body.removeChild(window);
             close(window);
@@ -40,26 +40,26 @@ function rz(string, time) {
 
 // noti 函数。
 
-function noti(string, title) {
+function noti(string, title, id) {
     if (string == null || string == undefined) {
-        fail("You can't input null or undefined!");
-        return "In Noti(), the string parameter cannot be null or undefined.";
+        fail("It's prohibited to type in null or undefined!");
     }
     string = String(string);
     let s_replaced = string.replace(/\s+/g, "");
     if (title == null || title == undefined) title = "Notification";
+    if (id == null || id == undefined) id = "";
     else {
         title = String(title);
         let t_replaced = title.replace(/\s+/g, "");
         if (t_replaced === "") title = "Notification";
     }
     if (s_replaced === "") {
-        warn("You can't input an empty string.");
-        return "In Noti(), the string parameter cannot be an empty string.";
+        warn("It's prohibited to type in empty strings.");
     }
 
     const window = document.createElement("div");
     window.className = "noti-window";
+    window.id = id;
     const square = document.createElement("div");
     square.className = "noti-square";
     const icon = document.createElement("img");
@@ -85,12 +85,12 @@ function noti(string, title) {
     window.appendChild(content);
     window.appendChild(bar);
 
-    window.style.animation = `jr_fn 550ms forwards ${easing}`;
+    window.style.animation = `jr_fn 0.55s forwards ${easing}`;
     content.innerHTML = string;
     txt.innerHTML = title;
 
     window.addEventListener("animationend", () => {
-        content.style.transform = "translateY(0%)";
+        content.style.transform = "translateY(0px)";
         content.style.opacity = 1;
         icon.style.opacity = 1;
         txt.style.opacity = 1;
@@ -116,41 +116,41 @@ function noti(string, title) {
 
     setTimeout(() => {
         content.style.opacity = 0;
-        content.style.transform = "translateY(-10%)";
+        content.style.transform = "translateY(-10px)";
         icon.style.opacity = 0;
         txt.style.opacity = 0;
         content.addEventListener("transitionend", () => {
-            window.style.animation = `cc_fn 550ms forwards ${easing}`;
+            window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+            close(window, windows);
             setTimeout(() => {
                 if (document.body.contains(window)) document.body.removeChild(window);
-                close(window, windows);
-            }, 550);    
+            }, 550);
         });
     }, smarttime(string));
 }
 
 // cg 函数。
 
-function cg(string, title) {
+function cg(string, title, id) {
     if (string == null || string == undefined) {
-        fail("You can't input null or undefined!");
-        return "In Cg(), the string parameter cannot be null or undefined.";
+        fail("It's prohibited to type in null or undefined!");
     }
     string = String(string);
     let s_replaced = string.replace(/\s+/g, "");
     if (title == null || title == undefined) title = "Success";
+    if (id == null || id == undefined) id = "";
     else {
         title = String(title);
         let t_replaced = title.replace(/\s+/g, "");
         if (t_replaced === "") title = "Success";
     }
     if (s_replaced === "") {
-        warn("You can't input an empty string.");
-        return "In Cg(), the string parameter cannot be an empty string.";
+        warn("It's prohibited to type in empty strings.");
     }
 
     const window = document.createElement("div");
     window.className = "cg-window";
+    window.id = id;
     const square = document.createElement("div");
     square.className = "cg-square";
     const txt = document.createElement("div");
@@ -176,12 +176,12 @@ function cg(string, title) {
     window.appendChild(content);
     window.appendChild(bar);
 
-    window.style.animation = `jr_fn 550ms forwards ${easing}`;
+    window.style.animation = `jr_fn 0.55s forwards ${easing}`;
     content.innerHTML = string;
     txt.innerHTML = title;
 
     window.addEventListener("animationend", () => {
-        content.style.transform = "translateY(0%)";
+        content.style.transform = "translateY(0px)";
         content.style.opacity = 1;
         txt.style.opacity = 1;
         icon.style.opacity = 1;
@@ -207,14 +207,14 @@ function cg(string, title) {
 
     setTimeout(() => {
         content.style.opacity = 0;
-        content.style.transform = "translateY(-10%)";
+        content.style.transform = "translateY(-10px)";
         txt.style.opacity = 0;
         icon.style.opacity = 0;
         content.addEventListener("transitionend", () => {
-            window.style.animation = `cc_fn 550ms forwards ${easing}`;
+            window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+            close(window, windows)
             setTimeout(() => {
                 if (document.body.contains(window)) document.body.removeChild(window);
-                close(window, windows)
             }, 550);
         });
     }, smarttime(string));
@@ -222,26 +222,26 @@ function cg(string, title) {
 
 // fail 函数。
 
-function fail(string, title) {
+function fail(string, title, id) {
     if (string == null || string == undefined) {
-        fail("You can't input null or undefined!");
-        return "In Fail(), the string parameter cannot be null or undefined.";
+        fail("It's prohibited to type in null or undefined!");
     }
     string = String(string);
     let s_replaced = string.replace(/\s+/g, "");
     if (title == null || title == undefined) title = "Failed";
+    if (id == null || id == undefined) id = "";
     else {
         title = String(title);
         let t_replaced = title.replace(/\s+/g, "");
         if (t_replaced === "") title = "Failed";
     }
     if (s_replaced === "") {
-        warn("You can't input an empty string.");
-        return "In Fail(), the string parameter cannot be an empty string.";
+        warn("It's prohibited to type in empty strings.");
     }
 
     const window = document.createElement("div");
     window.className = "fail-window";
+    window.id = id;
     const square = document.createElement("div");
     square.className = "fail-square";
     const icon = document.createElement("img");
@@ -268,12 +268,12 @@ function fail(string, title) {
     window.appendChild(bar);
 
     icon.src = "images/Err.png";
-    window.style.animation = `jr_fn 550ms forwards ${easing}`;
+    window.style.animation = `jr_fn 0.55s forwards ${easing}`;
     content.innerHTML = string;
     txt.innerHTML = title;
 
     window.addEventListener("animationend", () => {
-        content.style.transform = "translateY(0%)";
+        content.style.transform = "translateY(0px)";
         content.style.opacity = 1;
         icon.style.opacity = 1;
         txt.style.opacity = 1;
@@ -299,14 +299,14 @@ function fail(string, title) {
 
     setTimeout(() => {
         content.style.opacity = 0;
-        content.style.transform = "translateY(-10%)";
+        content.style.transform = "translateY(-10px)";
         icon.style.opacity = 0;
         txt.style.opacity = 0;
         content.addEventListener("transitionend", () => {
-            window.style.animation = `cc_fn 550ms forwards ${easing}`;
+            window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+            close(window, windows)
             setTimeout(() => {
                 if (document.body.contains(window)) document.body.removeChild(window);
-                close(window, windows)
             }, 550);
         });
     }, smarttime(string));
@@ -314,22 +314,21 @@ function fail(string, title) {
 
 // warn 函数。
 
-function warn(string, title) {
+function warn(string, title, id) {
     if (string == null || string == undefined) {
-        fail("You can't input null or undefined!");
-        return "In Warn(), the string parameter cannot be null or undefined.";
+        fail("It's prohibited to type in null or undefined!");
     }
     string = String(string);
     let s_replaced = string.replace(/\s+/g, "");
     if (title == null || title == undefined) title = "Warning";
+    if (id == null || id == undefined) id = "";
     else {
         title = String(title);
         let t_replaced = title.replace(/\s+/g, "");
         if (t_replaced === "") title = "Warning";
     }
     if (s_replaced === "") {
-        warn("You can't input an empty string.");
-        return "In Warn(), the string parameter cannot be an empty string.";
+        warn("It's prohibited to type in empty strings.");
     }
 
     const window = document.createElement("div");
@@ -360,12 +359,12 @@ function warn(string, title) {
     window.appendChild(bar);
 
     icon.src = "images/Exc.png";
-    window.style.animation = `jr_fn 550ms forwards ${easing}`;
+    window.style.animation = `jr_fn 0.55s forwards ${easing}`;
     content.innerHTML = string;
     txt.innerHTML = title;
 
     window.addEventListener("animationend", () => {
-        content.style.transform = "translateY(0%)";
+        content.style.transform = "translateY(0px)";
         content.style.opacity = 1;
         icon.style.opacity = 1;
         txt.style.opacity = 1;
@@ -391,14 +390,14 @@ function warn(string, title) {
 
     setTimeout(() => {
         content.style.opacity = 0;
-        content.style.transform = "translateY(-10%)";
+        content.style.transform = "translateY(-10px)";
         icon.style.opacity = 0;
         txt.style.opacity = 0;
         content.addEventListener("transitionend", () => {
-            window.style.animation = `cc_fn 550ms forwards ${easing}`;
+            window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+            close(window, windows)
             setTimeout(() => {
                 if (document.body.contains(window)) document.body.removeChild(window);
-                close(window, windows)
             }, 550);
         });
     }, smarttime(string));
@@ -406,27 +405,27 @@ function warn(string, title) {
 
 // inp 函数。
 
-async function inp(string, title) {
+async function inp(string, title, id) {
     return new Promise((resolve) => {
         if (string == null || string == undefined) {
-            fail("You can't input null or undefined!");
-            return "In Inp(), the string parameter cannot be null or undefined.";
+            fail("It's prohibited to type in null or undefined!");
         }
         string = String(string);
         let s_replaced = string.replace(/\s+/g, "");
         if (title == null || title == undefined) title = "Input";
+        if (id == null || id == undefined) id = "";
         else {
             title = String(title);
             let t_replaced = title.replace(/\s+/g, "");
             if (t_replaced === "") title = "Input";
         }
         if (s_replaced === "") {
-            warn("You can't input an empty string.");
-            return "In Inp(), the string parameter cannot be an empty string.";
+            warn("It's prohibited to type in empty strings.");
         }
 
         const window = document.createElement("div");
         window.className = "inp-window";
+        window.id = id;
         const square = document.createElement("div");
         square.className = "inp-square";
         const icon = document.createElement("img");
@@ -460,12 +459,12 @@ async function inp(string, title) {
         window.appendChild(box);
         
         icon.src = "images/Inp.png";
-        window.style.animation = `jr_fn 550ms forwards ${easing}`;
+        window.style.animation = `jr_fn 0.55s forwards ${easing}`;
         content.innerHTML = string;
         txt.innerHTML = title;
 
         window.addEventListener("animationend", () => {
-            content.style.transform = "translateY(0%)";
+            content.style.transform = "translateY(0px)";
             content.style.opacity = 1;
             box.style.opacity = 1;
             icon.style.opacity = 1;
@@ -482,17 +481,17 @@ async function inp(string, title) {
         box.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
                 const value = box.value;
-                content.style.transform = "translateY(-10%)";
+                content.style.transform = "translateY(-10px)";
                 content.style.opacity = 0;
                 box.style.opacity = 0;
                 icon.style.opacity = 0;
                 txt.style.opacity = 0;
                 content.addEventListener("transitionend", () => {
-                    window.style.animation = `cc_fn 550ms forwards ${easing}`;
+                    window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+                    close(window, windows);
+                    resolve(value);
                     setTimeout(() => {
-                        resolve(value);
                         if (document.body.contains(window)) document.body.removeChild(window);
-                        close(window, windows);
                     }, 550);
                 });
             }
@@ -502,16 +501,31 @@ async function inp(string, title) {
 
 // xz 函数。
 
-async function xz(string, n, names, title) {
+async function xz(string, n, names, title, id) {
     return new Promise((resolve) => {
-        if (n === null || n === undefined) fail("The number of options entered must be a number.");
-        else if (isNaN(n)) fail("The number of options entered must be a number.");
-        else if (n <= 0) fail("Please enter a positive number.")
-        n = Math.ceil(Number(n));
-        const array = Array.from(names);
+        if (string == null || string == undefined) {
+            fail("It's prohibited to type in null or undefined!");
+        }
+        string = String(string);
+        let s_replaced = string.replace(/\s+/g, "");
+        if (title == null || title == undefined) title = "Multiple or Single Choice";
+        if (id == null || id == undefined) id = "";
+        if (n > names.length) {
+            fail("The choices given is not enough!");
+            return;
+        }
+        else {
+            title = String(title);
+            let t_replaced = title.replace(/\s+/g, "");
+            if (t_replaced === "") title = "Multiple or Single Choice";
+        }
+        if (s_replaced === "") {
+            warn("It's prohibited to type in empty strings.");
+        }
 
         const window = document.createElement("div");
         window.className = "xz-window";
+        window.id = id;
         const square = document.createElement("div");
         square.className = "xz-square";
         const icon = document.createElement("img");
@@ -526,23 +540,13 @@ async function xz(string, n, names, title) {
         content.className = "fn-content";
         content.style.opacity = 0;
         content.style.transition = "all 175ms cubic-bezier(0.33, 1, 0.68, 1)";
+        const confirm = document.createElement("button");
+        confirm.className = "xz-confirm";
+        confirm.innerHTML = "Confirm";
+        confirm.style.opacity = 0;
 
-        if (string == null || string == undefined) {
-            fail("You can't input null or undefined!");
-            return "In Xz(), the string parameter cannot be null or undefined.";
-        }
-        string = String(string);
-        let s_replaced = string.replace(/\s+/g, "");
-        if (title == null || title == undefined) title = "Select";
-        else {
-            title = String(title);
-            let t_replaced = title.replace(/\s+/g, "");
-            if (t_replaced === "") title = "Select";
-        }
-        if (s_replaced === "") {
-            warn("You can't input an empty string.");
-            return "In Xz(), the string parameter cannot be an empty string.";
-        }
+        const array = Array.from(names);
+        const xz_items = []; // 被选择的选项。
 
         create(window);
         document.body.appendChild(window);
@@ -550,9 +554,10 @@ async function xz(string, n, names, title) {
         square.appendChild(icon);
         square.appendChild(txt);
         window.appendChild(content);
+        window.appendChild(confirm);
 
         icon.src = "images/Sel.png";
-        window.style.animation = `jr_fn 550ms forwards ${easing}`;
+        window.style.animation = `jr_fn 0.55s forwards ${easing}`;
         content.innerHTML = string;
         txt.innerHTML = title;
 
@@ -579,79 +584,111 @@ async function xz(string, n, names, title) {
             const b = Math.floor(Math.random() * 255);
             return tohex(r, g, b);
         }
+        
+        confirm.onclick = () => {
+            if (xz_items.length === 0) {
+                warn("You haven't selected any option yet.");
+                return;
+            } else {
+                resolve(xz_items);
+                content.style.opacity = 0;
+                content.style.transform = "translateY(-10px)";
+                icon.style.opacity = 0;
+                txt.style.opacity = 0;
+                confirm.style.opacity = 0;
+                content.addEventListener("transitionend", () => {
+                    window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+                    close(window, windows)
+                    setTimeout(() => {
+                        if (document.body.contains(window)) document.body.removeChild(window);
+                    }, 550);
+                });
+            }
+        };
 
-        for (let i = 0; i < n; i++) {
+        for (let i = 0; i < array.length; i++) {
+            const container = document.createElement("div");
+            container.style.position = "relative";
+            container.style.display = "flex";
+            container.style.marginBottom = "10px";
+            container.style.left = "0px";
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "xz-checkbox";
+            checkbox.id = `checkbox${i}`;
+            
             const btn = document.createElement("button");
             array[i] = String(array[i]);
             btn.id = `btn${i}`;
+            btn.className = "xz-btn";
             btn.innerHTML = array[i];
 
             btn.style.backgroundColor = `${color()}b0`;
-            btn.style.backdropFilter = "blur(14px) saturate(250%)";
-            btn.style.opacity = 0;
-            btn.style.transition = "all 175ms cubic-bezier(0.33, 1, 0.68, 1)";
-            btn.style.fontSize = "20px";
-            btn.style.border = "none";
-            btn.style.padding = "14px 25px";
-            btn.style.textAlign = "center";
-            btn.style.cursor = "pointer";
-            btn.style.color = "white";
-            btn.style.position = "absolute";
-            btn.style.top = `${i * 60 + 60}px`;
-            btn.style.flex = "1";
-            content.style.marginBottom = `${80 + i * 60}px`;
-            btn.style.left = "20px";
+
+            container.appendChild(checkbox);
+            container.appendChild(btn);
+            container.style.top = `${btn.offsetHeight + 25}px`;
+            content.style.marginBottom = `25px`;
 
             window.addEventListener("animationend", () => {
-                content.style.transform = "translateY(0%)";
+                content.style.transform = "translateY(0px)";
                 content.style.opacity = 1;
                 btn.style.opacity = 1;
+                checkbox.style.opacity = 1;
                 icon.style.opacity = 1;
                 txt.style.opacity = 1;
+                confirm.style.opacity = 1;
             });
 
-            btn.onclick = () => {
-                resolve(array[i]);
-                content.style.opacity = 0;
-                content.style.transform = "translateY(-10%)";
-                btn.style.opacity = 0;
-                icon.style.opacity = 0;
-                txt.style.opacity = 0;
-                content.addEventListener("transitionend", () => {
-                    window.style.animation = `cc_fn 550ms forwards ${easing}`;
-                    setTimeout(() => {
-                        if (document.body.contains(window)) document.body.removeChild(window);
-                        close(window, windows)
-                    }, 550);
-                });
+            checkbox.onchange = () => {
+                if (checkbox.checked) {
+                    if (xz_items.length >= n) {
+                        warn(`The number of selected options has reached the limit of ${n}.`);
+                        checkbox.checked = false;
+                        return;
+                    }
+                    xz_items.push(array[i]);
+                } else {
+                    const index = xz_items.indexOf(array[i]);
+                    if (index > -1) {
+                        xz_items.splice(index, 1);
+                    }
+                }
             };
-            content.appendChild(btn);
+
+            btn.onclick = () => {
+                checkbox.checked = !checkbox.checked;
+                checkbox.dispatchEvent(new Event('change'));
+            };
+
+            content.appendChild(container);
         }
     });
 }
 
 // synchr 函数。
 
-async function synchr(string, title) {
+async function synchr(string, title, id) {
     if (string == null || string == undefined) {
-        fail("You can't input null or undefined!");
-        return "In Synchr(), the string parameter cannot be null or undefined.";
+        fail("It's prohibited to type in null or undefined!");
     }
     string = String(string);
     let s_replaced = string.replace(/\s+/g, "");
-    if (title == null || title == undefined) title = "Synchronize";
+    if (title == null || title == undefined) title = "Synchronization";
+    if (id == null || id == undefined) id = "";
     else {
         title = String(title);
         let t_replaced = title.replace(/\s+/g, "");
-        if (t_replaced === "") title = "Synchronize";
+        if (t_replaced === "") title = "Synchronization";
     }
     if (s_replaced === "") {
-        warn("You can't input an empty string.");
-        return "In Synchr(), the string parameter cannot be an empty string.";
+        warn("It's prohibited to type in empty strings.");
     }
 
     const window = document.createElement("div");
     window.className = "synchr-window";
+    window.id = id;
     const square = document.createElement("div");
     square.className = "synchr-square";
     const icon = document.createElement("img");
@@ -678,13 +715,12 @@ async function synchr(string, title) {
     window.appendChild(bar);
 
     icon.src = "images/Synchronization.png";
-    window.style.animation = `jr_fn 550ms forwards ${easing}`;
+    window.style.animation = `jr_fn 0.55s forwards ${easing}`;
     content.innerHTML = string;
-    rz(string);
     txt.innerHTML = title;
 
     window.addEventListener("animationend", () => {
-        content.style.transform = "translateY(0%)";
+        content.style.transform = "translateY(0px)";
         content.style.opacity = 1;
         icon.style.opacity = 1;
         txt.style.opacity = 1;
@@ -701,14 +737,14 @@ async function synchr(string, title) {
     
     setTimeout(() => {
         content.style.opacity = 0;
-        content.style.transform = "translateY(-10%)";
+        content.style.transform = "translateY(-10px)";
         icon.style.opacity = 0;
         txt.style.opacity = 0;
         content.addEventListener("transitionend", () => {
-            window.style.animation = `cc_fn 550ms forwards ${easing}`;
+            window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+            close(window, windows)
             setTimeout(() => {
                 if (document.body.contains(window)) document.body.removeChild(window);
-                close(window, windows)
             }, 550);
         });
     }, smarttime(string));
@@ -716,36 +752,34 @@ async function synchr(string, title) {
 
 // lj 函数。
 
-async function lj(string, url, title) {
+async function lj(string, url, title, id) {
     if (string == null || string == undefined) {
-        fail("You can't input null or undefined!");
-        return "In Lj(), the string parameter cannot be null or undefined.";
+        fail("It's prohibited to type in null or undefined!");
     }
     if (url == null || url == undefined) {
-        warn("Cannot jump to null or undefined.");
-        return "In Lj(), the url parameter cannot be null or undefined.";
+        warn("无法跳转至 null 或 undefined。");
     }
     string = String(string);
     url = String(url);
     let s_replaced = string.replace(/\s+/g, "");
     let u_replaced = url.replace(/\s+/g, "");
     if (title == null || title == undefined) title = "Link";
+    if (id == null || id == undefined) id = "";
     else {
         title = String(title);
         let t_replaced = title.replace(/\s+/g, "");
         if (t_replaced === "") title = "Link";
     }
     if (s_replaced === "") {
-        warn("You can't input an empty string.");
-        return "In Lj(), the string parameter cannot be an empty string.";
+        warn("It's prohibited to type in empty strings.");
     }
     if (u_replaced === "") {
-        warn("Cannot jump to an empty string.");
-        return "In Lj(), the url parameter cannot be an empty string.";
+        warn("There is no URL to jump to.");
     }
 
     const window = document.createElement("div");
     window.className = "lj-window";
+    window.id = id;
     const square = document.createElement("div");
     square.className = "lj-square";
     const icon = document.createElement("img");
@@ -776,13 +810,13 @@ async function lj(string, url, title) {
     visible(content, "Lj");
 
     icon.src = "images/Link.png";
-    window.style.animation = `jr_fn 550ms forwards ${easing}`;
+    window.style.animation = `jr_fn 0.55s forwards ${easing}`;
     content.innerHTML = string;
     btn.innerHTML = url;
     txt.innerHTML = title;
 
     window.addEventListener("animationend", () => {
-        content.style.transform = "translateY(0%)";
+        content.style.transform = "translateY(0px)";
         content.style.opacity = 1;
         btn.style.opacity = 1;
         icon.style.opacity = 1;
@@ -798,18 +832,18 @@ async function lj(string, url, title) {
 
     btn.onclick = () => {
         if (!open(url, "_blank", `width=${defwid}, height=${defhei}`)) {
-            warn("The window jumped has been blocked.");
+            warn("The window was blocked.");
         }
         content.style.opacity = 0;
-        content.style.transform = "translateY(-10%)";
+        content.style.transform = "translateY(-10px)";
         btn.style.opacity = 0;
         icon.style.opacity = 0;
         txt.style.opacity = 0;
         content.addEventListener("transitionend", () => {
-            window.style.animation = `cc_fn 550ms forwards ${easing}`;
+            window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+            close(window, windows)
             setTimeout(() => {
                 if (document.body.contains(window)) document.body.removeChild(window);
-                close(window, windows)
             }, 550);
         });
     }
@@ -817,27 +851,27 @@ async function lj(string, url, title) {
 
 // zd 函数。
 
-async function zd(string, title) {
+async function zd(string, title, id) {
     return new Promise((resolve) => {
         if (string == null || string == undefined) {
-            fail("You can't input null or undefined!");
-            return "In Zd(), the string parameter cannot be null or undefined.";
+            fail("It's prohibited to type in null or undefined!");
         }
         string = String(string);
         let s_replaced = string.replace(/\s+/g, "");
         if (title == null || title == undefined) title = "Terminal";
+        if (id == null || id == undefined) id = "";
         else {
             title = String(title);
             let t_replaced = title.replace(/\s+/g, "");
             if (t_replaced === "") title = "Terminal";
         }
         if (s_replaced === "") {
-            warn("You can't input an empty string.");
-            return "In Zd(), the string parameter cannot be an empty string.";
+            warn("It's prohibited to type in empty strings.");
         }
 
         const window = document.createElement("div");
         window.className = "zd-window";
+        window.id = id;
         const square = document.createElement("div");
         square.className = "zd-square";
         const icon = document.createElement("img");
@@ -865,7 +899,7 @@ async function zd(string, title) {
             if (event.key === "Enter" && !event.shiftKey) {
                 const value = box.value.trim();
                 if (value === "") {
-                    warn("You can't input an empty string.");
+                    warn("It's prohibited to type in empty strings.");
                     return;
                 }
                 try {
@@ -874,10 +908,10 @@ async function zd(string, title) {
                         rz(k);
                         resolve(k);
                     } else if (k === undefined) {
-                        rz("undefined.");
+                        rz("返回值为 undefined。");
                         resolve();
                     } else if (k === null) {
-                        rz("null.");
+                        rz("返回值为 null。");
                         resolve();
                     }
                 } catch (error) {
@@ -885,15 +919,15 @@ async function zd(string, title) {
                     resolve();
                 }
                 content.style.opacity = 0;
-                content.style.transform = "translateY(-10%)";
+                content.style.transform = "translateY(-10px)";
                 box.style.opacity = 0;
                 icon.style.opacity = 0;
                 txt.style.opacity = 0;
                 content.addEventListener("transitionend", () => {
-                    window.style.animation = `cc_fn 550ms forwards ${easing}`;
+                    window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+                    close(window, windows);
                     setTimeout(() => {
                         if (document.body.contains(window)) document.body.removeChild(window);
-                        close(window, windows);
                     }, 550);
                 });
             } else if (event.key === "Enter" && event.shiftKey) {
@@ -911,12 +945,12 @@ async function zd(string, title) {
         window.appendChild(box);
 
         icon.src = "images/Com.png";
-        window.style.animation = `jr_fn 550ms forwards ${easing}`;
+        window.style.animation = `jr_fn 0.55s forwards ${easing}`;
         content.innerHTML = string;
         txt.innerHTML = title;
 
         window.addEventListener("animationend", () => {
-            content.style.transform = "translateY(0%)";
+            content.style.transform = "translateY(0px)";
             content.style.opacity = 1;
             box.style.opacity = 1;
             icon.style.opacity = 1;
@@ -934,42 +968,39 @@ async function zd(string, title) {
 
 // wz 函数。
 
-async function timer(string, time, title) {
+async function timer(string, time, title, id) {
     return new Promise((resolve) => {
         let passed_time = 0;
         let unit;
         let transfer;
         if (string == null || string == undefined) {
-            fail("You can't input null or undefined!");
-            return "In Timer(), the string parameter cannot be null or undefined.";
+            fail("It's prohibited to type in null or undefined!");
         }
         if (time == null || time == undefined) {
-            fail("Null and undefined are not allowed in time parameter.");
-            return "In Timer(), the time parameter cannot be null or undefined.";
+            fail("Null and undefined aren't valid numbers.");
         }
         string = String(string);
         time = Number(time);
         let s_replaced = string.replace(/\s+/g, "");
-        if (title == null || title == undefined) title = "Timer";
+        if (title == null || title == undefined) title = "Count";
+        if (id == null || id == undefined) id = "";
         if (isNaN(time)) {
-            fail("The value of time parameter must be a number or a string of pure numbers.");
-            return "In Timer(), the value of time parameter must be a number or a string of pure numbers.";
+            fail("The value of time must be a number or a string that only contains numbers.");
         } else if (time < 1250) {
-            warn("The value of time parameter is too small to be accurate.");
-            return "In Timer(), the value of time parameter must be greater than or equal to 1250.";
+            warn("The value of time is too small.");
         } else if (time > 3.15576e10 * 1.1568) {
-            warn("The value of time parameter is too large to be accurate.");
-            return "In Timer(), the value of time parameter must be less than or equal to 6.048e10.";
+            warn("The value of time is too large.");
         }
         else {
             title = String(title);
             let t_replaced = title.replace(/\s+/g, "");
-            if (t_replaced === "") title = "Timer";
+            if (t_replaced === "") title = "Count";
         }
         if (s_replaced === "") string = "";
 
         const window = document.createElement("div");
         window.className = "timer-window";
+        window.id = id;
         const square = document.createElement("div");
         square.className = "timer-square";
         const icon = document.createElement("img");
@@ -997,7 +1028,7 @@ async function timer(string, time, title) {
         window.appendChild(content);
         window.appendChild(bar);
 
-        window.style.animation = `jr_fn 550ms forwards ${easing}`;
+        window.style.animation = `jr_fn 0.55s forwards ${easing}`;
         txt.innerHTML = title;
 
         if (time < 6e4) {
@@ -1022,14 +1053,14 @@ async function timer(string, time, title) {
 
         let i = setInterval(() => {
             passed_time += 10;
-            content.innerHTML = `${string}<br />（${passed_time / 1000} second(s) / ${(time / transfer).toFixed(2)} ${unit}）`;
+            content.innerHTML = `${string}<br />（${passed_time / 1000} 秒 / ${(time / transfer).toFixed(2)} ${unit}）`;
             if (passed_time >= time) {
                 clearInterval(i);
             }
         }, 10);
 
         window.addEventListener("animationend", () => {
-            content.style.transform = "translateY(0%)";
+            content.style.transform = "translateY(0px)";
             content.style.opacity = 1;
             icon.style.opacity = 1;
             txt.style.opacity = 1;
@@ -1055,15 +1086,15 @@ async function timer(string, time, title) {
 
         setTimeout(() => {
             content.style.opacity = 0;
-            content.style.transform = "translateY(-10%)";
+            content.style.transform = "translateY(-10px)";
             icon.style.opacity = 0;
             txt.style.opacity = 0;
             resolve(true);
             content.addEventListener("transitionend", () => {
-                window.style.animation = `cc_fn 550ms forwards ${easing}`;
+                window.style.animation = `cc_fn 0.55s forwards ${easing}`;
+                close(window, windows);
                 setTimeout(() => {
                     if (document.body.contains(window)) document.body.removeChild(window);
-                    close(window, windows);
                 }, 550);
             });
         }, time);
@@ -1074,7 +1105,7 @@ async function wz(string) {
     return new Promise((resolve) => {
         let clicked = false;
         if (string == null || string == undefined) {
-            fail("You can't input null or undefined!");
+            fail("It's prohibited to type in null or undefined!");
             resolve(39);
             return;
         }
@@ -1099,13 +1130,13 @@ async function wz(string) {
         window.appendChild(btn);
         wzwin.push(window);
 
-        window.style.animation = `jr1_wz 550ms forwards ${easing}`;
-        left.style.animation = `jr1_solid 550ms forwards ${easing}`;
-        right.style.animation = `jr1_solid 550ms forwards ${easing}`;
+        window.style.animation = `jr1_wz 0.55s forwards ${easing}`;
+        left.style.animation = `jr1_solid 0.55s forwards ${easing}`;
+        right.style.animation = `jr1_solid 0.55s forwards ${easing}`;
         window.addEventListener("animationend", (e) => {
             if (e.animationName === "jr1_wz") {
-                window.style.animation = `jr2_wz 550ms forwards ${easing}`;
-                right.style.animation = `jr_right forwards 550ms ${easing}`;
+                window.style.animation = `jr2_wz 0.55s forwards ${easing}`;
+                right.style.animation = `jr_right forwards 0.55s ${easing}`;
                 window.addEventListener("animationend", (f) => {
                     if (f.animationName === "jr2_wz") {
                         txt.style.animation = `jr_txt forwards 0.3s ${easing}`;
@@ -1116,20 +1147,19 @@ async function wz(string) {
 
             btn.onclick = () => {
                 if (clicked) {
-                    warn("It's prohibited to click repeatedly.");
-                    return "Clicking repeatedly may lead to unexpected errors.";
+                    warn("Don't click the button repeatly.");
                 }
                 txt.style.animation = `cc_txt 0.3s forwards ${easing}`;
                 btn.style.animation = `cc_btn 0.3s forwards ${easing}`;
                 txt.addEventListener("animationend", (g) => {
                     if (g.animationName === "cc_txt") {
-                        window.style.animation = `cc1_wz 550ms forwards ${easing}`;
-                        left.style.animation = `cc_left 550ms forwards ${easing}`;
+                        window.style.animation = `cc1_wz 0.55s forwards ${easing}`;
+                        left.style.animation = `cc_left 0.55s forwards ${easing}`;
                         window.addEventListener("animationend", (h) => {
                             if (h.animationName === "cc1_wz") {
-                                window.style.animation = `cc2_wz 550ms forwards ${easing}`;
-                                left.style.animation = `cc1_solid 550ms forwards ${easing}`;
-                                right.style.animation = `cc1_solid 550ms forwards ${easing}`;
+                                window.style.animation = `cc2_wz 0.55s forwards ${easing}`;
+                                left.style.animation = `cc1_solid 0.55s forwards ${easing}`;
+                                right.style.animation = `cc1_solid 0.55s forwards ${easing}`;
                             }
                         });
                     }
@@ -1139,10 +1169,10 @@ async function wz(string) {
                     window.removeEventListener("animationend", ani_end);
                 };
                 window.addEventListener("animationend", ani_end);
-                resolve();
+                resolve("Confirmed");
+                wzwin.pop();
                 right.addEventListener("animationend", () => {
                     if (document.body.contains(window)) document.body.removeChild(window);
-                    wzwin.pop();
                 });
             };
         });
