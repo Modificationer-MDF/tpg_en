@@ -931,7 +931,7 @@ function control() { // 选项。
     ];
 
     for (var i = 0; i < all.length; i++) {
-        all[i].style.marginTop = `${(i + 1) * 90}px`;
+        all[i].style.marginTop = `${(i + 1) * 120}px`;
     }
 
     ctrl.appendChild(title);
