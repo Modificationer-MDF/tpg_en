@@ -1120,7 +1120,7 @@ async function inf_cont() { // 更新未读信息。
         clear.style.left = "-50%";
     } else {
         counts.style.top = "140px";
-        counts.innerHTML = `There're ${qj_count} unread messages now.`;
+        counts.innerHTML = `${qj_count > 1 ? "There're" : "There's"} ${qj_count} unread ${qj_count > 1 ? "messages" : "message"} now.`;
 
         clear.style.visibility = "visible";
         clear.style.opacity = 1;
