@@ -862,7 +862,7 @@ function control() { // 选项。
     inp2.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
             if (windows.length > 0) {
-                warn(`You can't modify deftime while ${check()} ${check().length > 1 ? "are" : "is"} running.`)
+                warn(`You can't modify deftime while ${check()} ${check().includes(",") ? "are" : "is"} running.`);
             } else {
                 if (!isNaN(Number(inp2.value))) deftime = Number(inp2.value);
                 else deftime = inp2.value;
@@ -1227,26 +1227,26 @@ function check() {
     let string = "";
     for (var i = 0; i <= windows.length - 1; i++) {
         if (windows[i].className === "noti-window") {
-            if (!string.includes("Noti()、")) string += "Noti()、";
+            if (!string.includes("Noti(), ")) string += "Noti(), ";
         } else if (windows[i].className === "cg-window") {
-            if (!string.includes("Cg()、")) string += "Cg()、";
+            if (!string.includes("Cg(), ")) string += "Cg(), ";
         } else if (windows[i].className === "fail-window") {
-            if (!string.includes("fail()、")) string += "fail()、";
+            if (!string.includes("fail(), ")) string += "fail(), ";
         } else if (windows[i].className === "warn-window") {
-            if (!string.includes("Warn()、")) string += "Warn()、";
+            if (!string.includes("Warn(), ")) string += "Warn(), ";
         } else if (windows[i].className === "inp-window") {
-            if (!string.includes("Inp()、")) string += "Inp()、";
+            if (!string.includes("Inp(), ")) string += "Inp(), ";
         } else if (windows[i].className === "synchr-window") {
-            if (!string.includes("Synchr()、")) string += "Synchr()、";
+            if (!string.includes("Synchr(), ")) string += "Synchr(), ";
         } else if (windows[i].className === "xz-window") {
-            if (!string.includes("Xz()、")) string += "Xz()、";
+            if (!string.includes("Xz(), ")) string += "Xz(), ";
         } else if (windows[i].className === "lj-window") {
-            if (!string.includes("Lj()、")) string += "Lj()、";
+            if (!string.includes("Lj(), ")) string += "Lj(), ";
         } else if (windows[i].className === "zd-window") {
-            if (!string.includes("Zd()、")) string += "Zd()、";
+            if (!string.includes("Zd(), ")) string += "Zd(), ";
         }
     }
-    if (string[string.length - 1] === "、") string = string.slice(0, -1);
+    if (string[string.length - 2].includes(",")) string = string.slice(0, string.length - 2);
     return string;
 }
 
