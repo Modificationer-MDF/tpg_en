@@ -31,6 +31,69 @@ let ls_warnunv = 0;
 let ls_synchrunv = 0;
 let warned = false;
 
+function noun_s(num, noun) {
+    sp1 = ["ch", "sh", "s", "x", "o"];
+    sp2 = ["a", "e", "i", "o", "u"];
+    sp3 = {
+        "child": "children",
+        "foot": "feet",
+        "wife": "wives",
+        "man": "men",
+        "tooth": "teeth",
+        "goose": "geese",
+        "elf": "elves",
+        "loaf": "loaves",
+        "person": "people",
+        "mouse": "mice",
+        "leaf": "leaves",
+        "life": "lives",
+        "woman": "women",
+        "knife": "knives",
+        "sheep": "sheep",
+        "deer": "deer",
+        "ox": "oxen",
+        "louse": "lice",
+        "die": "dice",
+        "cactus": "cacti",
+        "fungus": "fungi",
+        "nucleus": "nuclei",
+        "syllabus": "syllabi",
+        "crisis": "crises",
+        "wolf": "wolves",
+        "aircraft": "aircraft",
+        "species": "species",
+        "series": "series",
+        "radius": "radii",
+    };
+    noun = String(noun);
+    if (num % 1 === 0 && parseInt(num) === 1) return `${num} ${noun}`;
+    else if (!isNaN(parseFloat(num))) {
+        if (sp3.hasOwnProperty(noun)) return `${num} ${sp3[noun]}`;
+        else if (sp1.some(e => noun.endsWith(e))) {
+            switch (noun) {
+                case "stomach":
+                    return `${num} ${noun}s`;
+                case "photo":
+                    return `${num} ${noun}s`;
+                default:
+                    return `${num} ${noun}es`;
+            }
+        } else if (noun.endsWith("y")) {
+            if (sp2.some(e => noun[noun.length - 2] === e)) {
+                return `${num} ${noun}s`;
+            } else {
+                noun = noun.slice(0, -1);
+                noun += "ies";
+                return `${num} ${noun}`;
+            }
+        } else {
+            return `${num} ${noun}s`;
+        }
+    } else {
+        fail(`Unexpected value of num: ${num}.`);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     var start = performance.now();
     var font1 = new FontFace("basic", 'url("fonts/Basic Modification Regular.woff2")');
@@ -39,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     font1.load().then(function (f) {
         var end = performance.now();
         document.fonts.add(f);
-        cg(`It took ${((end - start) / 1000).toFixed(3)} seconds to load the font: Basic Modification Regular.`);
+        cg(`It took ${noun_s(((end - start) / 1000).toFixed(3), "second")} to load the font: Basic Modification Regular.`);
     }).catch(function (error) {
         switch (error.name) {
             case "NetworkError":
@@ -56,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     font2.load().then(function (f) {
         var end = performance.now();
         document.fonts.add(f);
-        cg(`It took ${((end - start) / 1000).toFixed(3)} seconds to load the font: Lanubu Light.`);
+        cg(`It took ${noun_s(((end - start) / 1000).toFixed(3), "second")} to load the font: Lanubu Light.`);
     }).catch(function (error) {
         switch (error.name) {
             case "NetworkError":
@@ -73,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     font3.load().then(function (f) {
         var end = performance.now();
         document.fonts.add(f);
-        cg(`It took ${((end - start) / 1000).toFixed(3)} seconds to load the font: Arno Pro Regular.`);
+        cg(`It took ${noun_s(((end - start) / 1000).toFixed(3), "second")} to load the font: Arno Pro Regular.`);
     }).catch(function (error) {
         switch (error.name) {
             case "NetworkError":

@@ -264,7 +264,7 @@ function fn1() { // "Function Demos" “预设” 模式。
     timerbtn.innerHTML = "timer";
     timerbtn.className = "btn29";
     timerbtn.onclick = async () => {
-        let b = await timer("5 seconds countdown.", 5000);
+        let b = await timer("5 seconds timing.", 5000);
         if (b) {
             noti("Time's up.");
         }
@@ -1060,7 +1060,7 @@ async function inf_cont() { // 更新未读信息。
         if (warned === false) {
             warn("Please don't modify noti_unv by other means. The website will be reflashed after 7 seconds.");
             warned = true;
-            let a = await timer("7 second countdown.", 7000);
+            let a = await timer("7 second timing.", 7000);
             if (a) location.reload();
         }
     }
@@ -1072,7 +1072,7 @@ async function inf_cont() { // 更新未读信息。
         if (warned === false) {
             warn("Please don't modify cg_unv by other means. The website will be reflashed after 7 seconds.");
             warned = true;
-            let a = await timer("7 second countdown.", 7000);
+            let a = await timer("7 second timing.", 7000);
             if (a) location.reload();
         }
     }
@@ -1084,7 +1084,7 @@ async function inf_cont() { // 更新未读信息。
         if (warned === false) {
             warn("Please don't modify fail_unv by other means. The website will be reflashed after 7 seconds.");
             warned = true;
-            let a = await timer("7 second countdown.", 7000);
+            let a = await timer("7 second timing.", 7000);
             if (a) location.reload();
         }
     }
@@ -1096,7 +1096,7 @@ async function inf_cont() { // 更新未读信息。
         if (warned === false) {
             warn("Please don't modify warn_unv by other means. The website will be reflashed after 7 seconds.");
             warned = true;
-            let a = await timer("7 second countdown.", 7000);
+            let a = await timer("7 second timing.", 7000);
             if (a) location.reload();
         }
     }
@@ -1108,7 +1108,7 @@ async function inf_cont() { // 更新未读信息。
         if (warned === false) {
             warn("Please don't modify synchr_unv by other means. The website will be reflashed after 7 seconds.");
             warned = true;
-            let a = await timer("7 second countdown.", 7000);
+            let a = await timer("7 second timing.", 7000);
             if (a) location.reload();
         }
     }
@@ -1122,7 +1122,7 @@ async function inf_cont() { // 更新未读信息。
         clear.style.left = "-50%";
     } else {
         counts.style.top = "140px";
-        counts.innerHTML = `${qj_count > 1 ? "There're" : "There's"} ${qj_count} unread ${qj_count > 1 ? "messages" : "message"} now.`;
+        counts.innerHTML = `${qj_count > 1 ? "There're" : "There's"} ${qj_count} unread ${noun_s(qj_count, "message")} now.`;
 
         clear.style.visibility = "visible";
         clear.style.opacity = 1;

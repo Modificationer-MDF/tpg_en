@@ -966,7 +966,7 @@ async function zd(string, title, id) {
     });
 }
 
-// wz 函数。
+// timer 函数。
 
 async function timer(string, time, title, id) {
     return new Promise((resolve) => {
@@ -1031,29 +1031,51 @@ async function timer(string, time, title, id) {
         window.style.animation = `jr_fn 0.55s forwards ${easing}`;
         txt.innerHTML = title;
 
+        units = ["second", "minute", "hour", "day", "week", "year"];
         if (time < 6e4) {
-            unit = "second(s)";
+            unit = units[0];
             transfer = 1000;
         } else if (time >= 6e4 && time < 3.6e6) {
-            unit = "minute(s)";
+            unit = units[1];
             transfer = 6e4;
         } else if (time >= 3.6e6 && time < 8.64e7) {
-            unit = "hour(s)";
+            unit = units[2];
             transfer = 3.6e6;
         } else if (time >= 8.64e7 && time < 6.048e8) {
-            unit = "day(s)";
+            unit = units[3];
             transfer = 8.64e7;
         } else if (time >= 6.048e8 && time < 3.15576e10) {
-            unit = "week(s)";
+            unit = units[4];
             transfer = 6.048e8;
         } else if (time >= 3.15576e10) {
-            unit = "year(s)";
+            unit = units[5];
             transfer = 3.15576e10;
         }
 
         let i = setInterval(() => {
+            let ls_unitcnt;
+            let ls_transfer;
+            if (passed_time < 6e4) {
+                ls_unitcnt = 0;
+                ls_transfer = 1000;
+            } else if (passed_time >= 6e4 && passed_time < 3.6e6) {
+                ls_unitcnt = 1;
+                ls_transfer = 6e4;
+            } else if (passed_time >= 3.6e6 && passed_time < 8.64e7) {
+                ls_unitcnt = 2;
+                ls_transfer = 3.6e6;
+            } else if (passed_time >= 8.64e7 && passed_time < 6.048e8) {
+                ls_unitcnt = 3;
+                ls_transfer = 8.64e7;
+            } else if (passed_time >= 6.048e8 && passed_time < 3.15576e10) {
+                ls_unitcnt = 4;
+                ls_transfer = 6.048e8;
+            } else if (passed_time >= 3.15576e10) {
+                ls_unitcnt = 5;
+                ls_transfer = 3.15576e10;
+            }
             passed_time += 10;
-            content.innerHTML = `${string}<br />（${passed_time / 1000} 秒 / ${(time / transfer).toFixed(2)} ${unit}）`;
+            content.innerHTML = `${string}<br />(${noun_s((passed_time / ls_transfer).toFixed(2), units[ls_unitcnt])} / ${noun_s((time / transfer).toFixed(2), unit)})`;
             if (passed_time >= time) {
                 clearInterval(i);
             }
